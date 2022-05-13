@@ -5,6 +5,9 @@
         "target": "es2017",
         "noImplicitAny": true,
         "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "resolveJsonModule": true,
         "sourceMap": true,
         "outDir": "dist",  // TS文件编译后会放入到此文件夹内
         "baseUrl": ".",

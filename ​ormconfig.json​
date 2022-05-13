@@ -1,0 +1,17 @@
+{
+  "type": "mysql",
+  "host": "124.220.193.224",
+  "port": 3306,
+  "username": "root",
+  "password": "Mysql@1234",
+  "database": "admin",
+  "synchronize": true,
+  "entities": [
+    "src/entity/*.ts"
+  ],
+  "migrations": ["src/migration/**/*.ts"],
+  "subscribers": ["src/subscriber/**/*.ts"]
+  "cli": {
+    "entitiesDir": "src/entity"
+  }
+}

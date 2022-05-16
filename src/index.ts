@@ -1,13 +1,15 @@
 import * as Koa from "koa"
 import * as bodyParser from 'koa-bodyparser';
+import  *  as  jwt  from  'koa-jwt'
+import * as logger from 'koa-logger'
+const cors  = require('@koa/cors')
 import { PORT } from './config/config';
 import appRouters  from './router'
 import cennetMySql from './config/sql'
-import  *  as  jwt  from  'koa-jwt'
-import {errorHandle} from "./middlewares/checkToken";
+import {errorHandle} from "./middlewares/errorHandle";
 const secret = 'secret';
 const app = new Koa();
-import logger = require('koa-logger')
+app.use(cors())
 app.use(errorHandle)
 app.use(bodyParser());
 app.use(jwt({secret}).unless({
@@ -27,7 +29,3 @@ app.use(logger((str, args) => {
 app.listen(PORT)
 
 console.log(`Server running on port ${PORT}`)
-
-function isRevoked(arg0: { secret: string; }, isRevoked: any, verify: (ctx: any, decodedToken: string, token: string) => boolean): Koa.Middleware<Koa.DefaultState, Koa.DefaultContext, any> {
-    throw new Error("Function not implemented.");
-}

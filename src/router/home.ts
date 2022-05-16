@@ -1,0 +1,10 @@
+import * as Router from "koa-router"
+import homeController from '../controller/homeController'
+import LoginController from '../controller/loginController'
+const homeRouter = new Router({
+    prefix: '/api'
+});
+
+homeRouter.get('/hello',  new homeController().hello)
+homeRouter.post('/login',  new LoginController().login)
+export default homeRouter;

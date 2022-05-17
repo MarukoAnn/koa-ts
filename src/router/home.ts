@@ -5,6 +5,6 @@ const homeRouter = new Router({
     prefix: '/api'
 });
 
-homeRouter.get('/hello',  new homeController().hello)
+homeRouter.post('/hello',  new homeController().hello)
 homeRouter.post('/login',  new LoginController().login)
 export default homeRouter;

@@ -12,7 +12,7 @@ on:
 env:
   SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }} # 服务器私钥
   SERVER_HOST: ${{ secrets.SERVER_HOST }} # 服务器ip地址
-  USER_NAME: ${{ secrets.USER_NAME }} # 服务器用户名
+  USER_NAME: ${{ secrets.SERVER_USER_NAME }} # 服务器用户名
   
   # Allows you to run this workflow manually from the Actions tab
   # workflow_dispatch:

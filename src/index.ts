@@ -13,7 +13,7 @@ app.use(cors())
 app.use(errorHandle)
 app.use(bodyParser());
 app.use(jwt({secret}).unless({
-    path: [/^\/api\/login/, /^\/api\/test/]
+    path: [/^\/api\/test/]
 }))
 // 添加路由
 appRouters(app);

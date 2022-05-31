@@ -34,7 +34,7 @@ jobs:
         uses: easingthemes/ssh-deploy@v2.1.6
         env:
             SSH_PRIVATE_KEY: ${{ env.SERVER_SSH_KEY }}
-            ARGS: '-AVZ --DELETE'
+            ARGS: '-rltgoDzvO'
             SOURCE: './'
             REMOTE_HOST: ${{ env.SERVER_HOST }}
             REMOTE_USER: ${{ env.USER_NAME }}

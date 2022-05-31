@@ -7,4 +7,5 @@ const homeRouter = new Router({
 
 homeRouter.post('/hello',  new homeController().hello)
 homeRouter.post('/login',  new LoginController().login)
+homeRouter.get('/test',  new LoginController().test)
 export default homeRouter;

@@ -17,4 +17,7 @@ export default class LoginController {
             ctx.body = data;
         }
     };
+    public test = (ctx: any) => {
+        ctx.body = ResponseMsg<string>(200, '测试一下', null)
+    }
 }

@@ -1,0 +1,64 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+env:
+  SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }} # 服务器私钥
+  SERVER_HOST: ${{ secrets.SERVER_HOST }} # 服务器ip地址
+  USER_NAME: ${{ secrets.USER_NAME }} # 服务器用户名
+  
+  # Allows you to run this workflow manually from the Actions tab
+  # workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # runs-on字段指定运行所需要的虚拟机环境。注意：这个是必填字段
+    runs-on: ubuntu-latest 
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      
+      - uses: actions/setup-node@v1
+        with:
+            node-version: v14.17.0
+        
+      - name: Cache nodemodules
+        uses: asctions/cache@v1
+        env:
+            cache-name: cache-node-modules
+        with:
+            # 需要缓存的文件路径
+            path: ./node_modules
+            # 对缓存文件指定的唯一标识
+            key: ${{runner.os}}-build-${{ env.cacahe-name }}-${{ hashFiles('./package.json) }}
+            # 用于没有在找到目标key的缓存的backup选项
+            restore-keys: |
+              ${{ runner.os }}-build-${{ env.cache-name }}-${{ runner.os }}-build-${{ runner.os }}-
+
+      # 上传资源
+      - name: Deploy
+        uses: easingthemes/ssh-deploy@v2.0.7
+        env:
+            SERVER_PRIVATE_KEY: ${{ env.SERVER_SSH_KEY }}
+            ARGS: '-AVZ --DELETE'
+            SOURCE: './'
+            REMOTE_HOST: ${{ env.SERVER_HOST }}
+            REMOTE_USER: ${{ env.SERVER_NAME }}
+            TARGET: '/home/koa-project' # 目标服务路径
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          npm run build
+          npm run pro

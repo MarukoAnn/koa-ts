@@ -37,7 +37,7 @@ jobs:
             port: 22
             username: ${{ env.USER_NAME }}
             password: ${{ env.PASS_WORD }}
-            scp_source: './'
+            scp_source: './src'
             scp_target: '/home/koa-project/koa-ts' # 目标服务路径
             before_script: |
               cd /home/koa-project/koa-ts

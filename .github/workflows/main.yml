@@ -34,7 +34,7 @@ jobs:
             node-version: v14.17.0
         
       - name: Cache nodemodules
-        uses: asctions/cache@v1
+        uses: actions/cache@v1
         env:
             cache-name: cache-node-modules
         with:

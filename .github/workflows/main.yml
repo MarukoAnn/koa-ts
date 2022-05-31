@@ -39,10 +39,17 @@ jobs:
             password: ${{ env.PASS_WORD }}
             scp_source: './'
             scp_target: '/home/koa-project/koa-ts' # 目标服务路径
+            before_script: |
+              cd /home/koa-project/koa-ts
+              npm install
+            after_script: |
+              npm run build
+              npm run pro
+
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          npm install
-          npm run build
-          npm run pro
+#      - name: Run a multi-line script
+#        run: |
+#          npm install
+#          npm run build
+#          npm run pro

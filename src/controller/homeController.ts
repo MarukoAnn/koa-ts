@@ -11,7 +11,7 @@ export default class HelloController {
         console.log(ctx.request.header['authorization'], 'authorization')
         let info = auth.verify(parseTokenInfo(ctx.request.header['authorization']));
         // if(info['username'] == 'admin') {
-            console.log('123')
+        //     console.log('123')
         // }
         let data = {
             code: 200,

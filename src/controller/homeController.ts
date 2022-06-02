@@ -10,7 +10,6 @@ export default class HelloController {
         console.log('cookies', ctx.cookies.get('token'))
         console.log(ctx.request.header['authorization'], 'authorization')
         let info = auth.verify(parseTokenInfo(ctx.request.header['authorization']));
-        console.log('123')
         // if(info['username'] == 'admin') {
         //     console.log('123')
         // }

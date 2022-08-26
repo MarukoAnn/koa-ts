@@ -6,7 +6,7 @@ export default class HelloController {
   private service: HomeService = new HomeService()
   public hello = async (ctx: any) => {
     console.log('cookies', ctx.cookies.get('token'))
-    console.log(ctx.request.header['authorization'], 'authorization')
+    // console.log(ctx.request.header['authorization'], 'authorization')
     let info = auth.verify(parseTokenInfo(ctx.request.header['authorization']))
     // if(info['username'] == 'admin') {
     console.log('123')

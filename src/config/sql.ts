@@ -1,10 +1,9 @@
 // const mysql = require('mysql');
-import { createConnection} from 'typeorm';
+import { DataSource } from 'typeorm';
 import {TYPEORM_HOST, TYPEORM_USERNAME, TYPEORM_PASSWORD, TYPEORM_DATABASE} from './config'
 import path = require('path');
-const cennetMySql = async () => {
-    await createConnection(
-        {
+const cennetMySql =   new DataSource(
+    {
         type: "mysql",
         host: TYPEORM_HOST,
         port: 3306,
@@ -15,7 +14,6 @@ const cennetMySql = async () => {
         synchronize: true,
         logging: false
     }
-    );
-}
+);
 
 export default cennetMySql

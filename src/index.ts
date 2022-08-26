@@ -18,7 +18,7 @@ app.use(jwt({secret}).unless({
 // 添加路由
 appRouters(app);
 // 创建数据库链接
-cennetMySql().then(() => {
+cennetMySql.initialize().then(() => {
     console.log('数据库连接成功')
 }).catch(() => {
     console.log('数据库连接失败')
